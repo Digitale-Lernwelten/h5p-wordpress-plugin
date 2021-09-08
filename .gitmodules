@@ -1,6 +1,8 @@
 [submodule "h5p-php-library"]
 	path = h5p-php-library
 	url = https://github.com/Digitale-Lernwelten/h5p-php-library.git
+	branch = dilewe
 [submodule "h5p-editor-php-library"]
 	path = h5p-editor-php-library
 	url = https://github.com/h5p/h5p-editor-php-library.git
+	branch = wordpress
