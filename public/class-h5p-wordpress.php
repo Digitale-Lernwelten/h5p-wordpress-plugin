@@ -711,6 +711,18 @@ class H5PWordPress implements H5PFrameworkInterface {
         ARRAY_A
       );
 
+	$tags = $wpdb->get_results($wpdb->prepare(
+        "SELECT ht.name
+        FROM {$wpdb->prefix}h5p_contents_tags hct
+        JOIN {$wpdb->prefix}h5p_tags ht ON ht.id = hct.tag_id
+        WHERE hct.content_id = %d",
+        $content['id']),
+        ARRAY_A
+      );
+	$content['tags'] = array_map(function($a){
+		return 'h5p-tag-'.str_replace([' ','"','<','>','\''],['_',''],$a['name']);
+	},$tags);
+
     if ($content !== NULL) {
       $content['metadata'] = array();
       $metadata_structure = array('title', 'authors', 'source', 'yearFrom', 'yearTo', 'license', 'licenseVersion', 'licenseExtras', 'authorComments', 'changes', 'defaultLanguage', 'a11yTitle');
